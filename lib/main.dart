@@ -54,7 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
 
       body: Center(
-        child: _selectedIndex == 0 ? SharedScreen() : PersonelScreen(),
+        child: _selectedIndex == 0 ?  PersonelScreen() : SharedScreen(),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[

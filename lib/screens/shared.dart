@@ -6,16 +6,12 @@ class SharedScreen extends StatefulWidget {
 }
 
 class _SharedScreenState extends State<SharedScreen> {
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: (Text(
+      child: Text(
         'Shared Screen',
-        style: optionStyle,
-      )),
+      ),
     );
   }
 }
