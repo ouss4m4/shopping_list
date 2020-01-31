@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:shopping_list/models/ShopItem.dart';
+import 'package:shopping_list/widgets/itemSingle.dart';
 
 class ItemsList extends StatelessWidget {
-  final List<String> shopItems;
+  final List<ShopItem> shopItems;
   ItemsList({this.shopItems});
 
   @override
@@ -9,16 +11,7 @@ class ItemsList extends StatelessWidget {
     return Container(
       child: ListView.builder(
         itemBuilder: (BuildContext context, int index) {
-          return ListTile(
-            leading: CircleAvatar(
-              child: IconButton(
-                icon: Icon(Icons.launch),
-                onPressed: null,
-              ),
-            ),
-            title: Text('${shopItems[index]}'),
-            subtitle: Text('Urgent Please'),
-          );
+          return ItemSingle(shopItems[index]);
         },
         itemCount: shopItems.length,
       ),
