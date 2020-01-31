@@ -5,19 +5,17 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 
 class ItemsList extends StatelessWidget {
   final List<ShopItem> shopItems;
-  ItemsList({this.shopItems});
+  final Function delegateRemovingItem;
+  final Function delegateEditingItem;
+  final Function delegateCompleteItem;
+  ItemsList(
+      {@required this.shopItems,
+      @required this.delegateRemovingItem,
+      @required this.delegateCompleteItem,
+      @required this.delegateEditingItem});
 
   @override
   Widget build(BuildContext context) {
-    handleActions(ShopItem item, String action) {
-      print(item);
-      print(action);
-      if (action == 'Remove') {
-        final snackBar = SnackBar(content: Text('${item.title} removed'));
-        Scaffold.of(context).showSnackBar(snackBar);
-      }
-    }
-
     return Container(
       child: ListView.builder(
         itemBuilder: (BuildContext context, int index) {
@@ -30,19 +28,19 @@ class ItemsList extends StatelessWidget {
                 caption: 'Remove',
                 color: Colors.red,
                 icon: Icons.delete_forever,
-                onTap: () => handleActions(shopItems[index], 'Remove'),
+                onTap: () => delegateRemovingItem(shopItems[index]),
               ),
               IconSlideAction(
                 caption: 'Edit',
                 color: Colors.blue,
                 icon: Icons.edit,
-                onTap: () => handleActions(shopItems[index], 'Edit'),
+                onTap: () => delegateEditingItem(shopItems[index]),
               ),
               IconSlideAction(
                 caption: 'Complete',
                 color: Colors.green,
                 icon: Icons.check_circle,
-                onTap: () => handleActions(shopItems[index], 'Complete'),
+                onTap: () => delegateCompleteItem(shopItems[index]),
               ),
             ],
           );
