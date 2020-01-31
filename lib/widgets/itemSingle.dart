@@ -7,13 +7,14 @@ class ItemSingle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Image.network(
-        '${shopItem.imageUrl}',
-        fit: BoxFit.contain,
-      ),
-      title: Text('${shopItem.title}'),
-      subtitle: Text('${shopItem.subtitle}'),
-      trailing: Text(shopItem.quantity),
-    );
+        leading: Image.network(
+          '${shopItem.imageUrl}',
+          fit: BoxFit.cover,
+        ), // no matter how big it is, it won't overflow
+        title: Text('${shopItem.title}'),
+        subtitle: Text('${shopItem.subtitle}'),
+        trailing: CircleAvatar(
+          child: Text(shopItem.quantity),
+        ));
   }
 }
