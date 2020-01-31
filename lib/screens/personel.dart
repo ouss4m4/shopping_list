@@ -8,7 +8,17 @@ class PersonelScreen extends StatefulWidget {
 }
 
 class _PersonelScreenState extends State<PersonelScreen> {
-  final List<ShopItem> data = [
+  handleRemoveItem(ShopItem item) {
+    this.setState(() {
+      dummyList.remove(item);
+    });
+  }
+
+  handleEditingItem(ShopItem item) {}
+
+  handleCompleteItem(ShopItem item) {}
+
+  final List<ShopItem> dummyList = [
     ShopItem(
         title: 'AAA Battreies',
         subtitle: 'Remote Controller',
@@ -39,7 +49,10 @@ class _PersonelScreenState extends State<PersonelScreen> {
   Widget build(BuildContext context) {
     return Container(
       child: ItemsList(
-        shopItems: data,
+        shopItems: dummyList,
+        delegateRemovingItem: handleRemoveItem,
+        delegateCompleteItem: handleCompleteItem,
+        delegateEditingItem: handleEditingItem,
       ),
     );
   }
