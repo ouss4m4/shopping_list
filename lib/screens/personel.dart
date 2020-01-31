@@ -19,7 +19,8 @@ class _PersonelScreenState extends State<PersonelScreen> {
         title: 'Cat food',
         subtitle: 'bring a fish meal if possible',
         quantity: '1',
-        imageUrl: 'https://placekitten.com/408/287'),
+        imageUrl:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTdxIdLMWcIIxd2fg_wUCdPRXQCkuM_e5muLQfo02WmPlu277Uo'),
     ShopItem(
         title: 'A4 Papers',
         subtitle: '',
