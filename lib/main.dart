@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shopping_list/screens/addItem.dart';
 import 'package:shopping_list/screens/personel.dart';
 import 'package:shopping_list/screens/shared.dart';
 
@@ -33,28 +34,22 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void onSubmitCalled(values) {
+    print('you got data : $values');
+  }
+
   int _selectedIndex = 0;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext defaultContext) {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
         centerTitle: true,
-        actions: <Widget>[
-          RaisedButton(
-            child: Text('btn1'),
-            onPressed: null,
-          ),
-          RaisedButton(
-            child: Text('btn2'),
-            onPressed: null,
-          ),
-        ],
       ),
 
       body: Center(
-        child: _selectedIndex == 0 ?  PersonelScreen() : SharedScreen(),
+        child: _selectedIndex == 0 ? PersonelScreen() : SharedScreen(),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
@@ -72,8 +67,15 @@ class _MyHomePageState extends State<MyHomePage> {
         onTap: _onItemTapped,
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: null,
-        tooltip: 'Increment',
+        onPressed: () => showModalBottomSheet(
+          context: defaultContext,
+          builder: (BuildContext bc) {
+            return AddItemForm(
+                validForm: onSubmitCalled,
+                caller: this._selectedIndex == 0 ? 'personel' : 'shared');
+          },
+        ),
+        tooltip: 'Add an item',
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
