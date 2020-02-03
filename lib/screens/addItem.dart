@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shopping_list/models/ShopItem.dart';
 
 class AddItemForm extends StatefulWidget {
   final String caller;
@@ -13,6 +14,18 @@ class AddItemForm extends StatefulWidget {
 class AddItemFormState extends State<AddItemForm> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController nameController = new TextEditingController();
+  final TextEditingController subtitleController = new TextEditingController();
+  final TextEditingController quantityController = new TextEditingController();
+
+  void emitFormValues() {
+    final ShopItem testItem = new ShopItem(
+        title: nameController.text,
+        subtitle: subtitleController.text,
+        quantity: quantityController.text,
+        imageUrl: 'http://placekitten.com/200/300');
+    widget.validForm(testItem);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -32,9 +45,12 @@ class AddItemFormState extends State<AddItemForm> {
                 },
               ),
               TextFormField(
+                controller: subtitleController,
                 decoration: InputDecoration(labelText: 'Information'),
               ),
               TextFormField(
+                controller: quantityController,
+                keyboardType: TextInputType.number,
                 decoration: InputDecoration(labelText: 'Quantity'),
               ),
               Row(
@@ -59,7 +75,7 @@ class AddItemFormState extends State<AddItemForm> {
                           // If the form is valid, display a snackbar. In the real world,
                           // you'd often call a server or save the information in a database.
                           print('form valid, add it');
-                          widget.validForm(nameController.text);
+                          emitFormValues();
                           Navigator.pop(context);
                         }
                       },

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shopping_list/providers/personalShopList.dart';
 import 'package:shopping_list/screens/addItem.dart';
 import 'package:shopping_list/screens/personel.dart';
 import 'package:shopping_list/screens/shared.dart';
@@ -13,7 +15,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.cyan,
       ),
-      home: MyHomePage(),
+      home: ChangeNotifierProvider(
+        create: (_) => PersonelShopList(),
+        child: MyHomePage(),
+      ),
     );
   }
 }
@@ -34,15 +39,13 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  void onSubmitCalled(values) {
-    print('you got data : $values');
-  }
-
   int _selectedIndex = 0;
 
   @override
   Widget build(BuildContext defaultContext) {
+    final personalItems = Provider.of<PersonelShopList>(context);
     return Scaffold(
+      resizeToAvoidBottomPadding: true,
       appBar: AppBar(
         title: Text(widget.title),
         centerTitle: true,
@@ -71,7 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
           context: defaultContext,
           builder: (BuildContext bc) {
             return AddItemForm(
-                validForm: onSubmitCalled,
+                validForm: personalItems.addItem,
                 caller: this._selectedIndex == 0 ? 'personel' : 'shared');
           },
         ),
