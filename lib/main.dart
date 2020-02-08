@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.cyan,
       ),
       home: ChangeNotifierProvider(
-        create: (_) => PersonelShopList(),
+        create: (_) => PersonelProvider(),
         child: MyHomePage(),
       ),
     );
@@ -43,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext defaultContext) {
-    final personalItems = Provider.of<PersonelShopList>(context);
+    final personalItems = Provider.of<PersonelProvider>(context);
     return Scaffold(
       resizeToAvoidBottomPadding: true,
       appBar: AppBar(

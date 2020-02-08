@@ -11,7 +11,7 @@ class PersonelScreen extends StatefulWidget {
 class _PersonelScreenState extends State<PersonelScreen> {
   @override
   Widget build(BuildContext context) {
-    final shopItemsProvider = Provider.of<PersonelShopList>(context);
+    final shopItemsProvider = Provider.of<PersonelProvider>(context);
     return Container(
       child: ItemsList(
         shopItems: shopItemsProvider.shopItems,

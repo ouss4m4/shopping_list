@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_list/models/ShopItem.dart';
 
-class PersonelShopList with ChangeNotifier {
+class PersonelProvider with ChangeNotifier {
   List<ShopItem> _itemsList = [
     ShopItem(
         title: 'AAA Battreies',
