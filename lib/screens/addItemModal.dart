@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_list/models/ShopItem.dart';
-import 'package:shopping_list/screens/addItem.dart';
+import 'package:shopping_list/widgets/addItem.dart';
 
 void showAddItemModal(BuildContext context, Function cbFunc,
     {ShopItem preset}) {
