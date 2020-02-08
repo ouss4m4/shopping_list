@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:shopping_list/models/ShopItem.dart';
 
 class AddItemForm extends StatefulWidget {
-  final String caller;
   final Function validForm;
-  AddItemForm({this.caller, @required this.validForm});
+  AddItemForm({@required this.validForm});
   @override
   AddItemFormState createState() {
     return AddItemFormState();
@@ -22,7 +21,7 @@ class AddItemFormState extends State<AddItemForm> {
         title: nameController.text,
         subtitle: subtitleController.text,
         quantity: quantityController.text,
-        imageUrl: 'http://placekitten.com/200/300');
+        imageUrl: 'http://placekitten.com/90/90');
     widget.validForm(testItem);
   }
 
@@ -70,13 +69,8 @@ class AddItemFormState extends State<AddItemForm> {
                     width: 130,
                     child: RaisedButton(
                       onPressed: () {
-                        // Validate returns true if the form is valid, otherwise false.
                         if (_formKey.currentState.validate()) {
-                          // If the form is valid, display a snackbar. In the real world,
-                          // you'd often call a server or save the information in a database.
-                          print('form valid, add it');
                           emitFormValues();
-                          Navigator.pop(context);
                         }
                       },
                       child: Text('Submit'),
@@ -84,8 +78,6 @@ class AddItemFormState extends State<AddItemForm> {
                   )
                 ],
               )
-            ])
-        // Add TextFormFields and RaisedButton here.
-        );
+            ]));
   }
 }
