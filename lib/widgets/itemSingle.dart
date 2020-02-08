@@ -8,8 +8,8 @@ class ItemSingle extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
         leading: SizedBox(
-            width: 60,
-            height: 60,
+            width: 90,
+            height: 90,
             child: Image.network(
               '${shopItem.imageUrl}',
             ) // no matter how big it is, it won't overflow

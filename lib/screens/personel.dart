@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shopping_list/providers/personalShopList.dart';
+import 'package:shopping_list/providers/personalProvider.dart';
+
 import 'package:shopping_list/widgets/itemsList.dart';
 
 class PersonelScreen extends StatefulWidget {
