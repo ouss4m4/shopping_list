@@ -58,11 +58,11 @@ class PersonelProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void setItemComplete(ShopItem itemToComplete) {
+/*   void setItemComplete(ShopItem itemToComplete) {
     int index = shopItems.indexOf(itemToComplete);
     if (index > -1) {
       shopItems[index] = itemToComplete;
       notifyListeners();
     }
-  }
+  } */
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:shopping_list/screens/addItem.dart';
 
-void showAddItemModal(BuildContext context) {
+void showAddItemModal(BuildContext context, Function cbFunc) {
   Dialog addItemModal = Dialog(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(12.0),
@@ -9,24 +10,16 @@ void showAddItemModal(BuildContext context) {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20.0),
       ),
-      height: 300.0,
-      width: 300.0,
+      height: 480.0,
+      width: double.infinity,
       child: Stack(
         children: <Widget>[
-          Container(
-            width: double.infinity,
-            height: 300,
-            decoration: BoxDecoration(
-              color: Colors.grey[100],
-              borderRadius: BorderRadius.circular(12.0),
-            ),
-          ),
           Container(
             width: double.infinity,
             height: 50,
             alignment: Alignment.bottomCenter,
             decoration: BoxDecoration(
-              color: Colors.greenAccent,
+              color: Colors.cyan,
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(12),
                 topRight: Radius.circular(12),
@@ -35,7 +28,7 @@ void showAddItemModal(BuildContext context) {
             child: Align(
               alignment: Alignment.center,
               child: Text(
-                "Fancy Dialog Title!",
+                "Add an item",
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 20,
@@ -43,33 +36,10 @@ void showAddItemModal(BuildContext context) {
               ),
             ),
           ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: InkWell(
-              onTap: () {
-                Navigator.pop(context);
-              },
-              child: Container(
-                width: double.infinity,
-                height: 50,
-                decoration: BoxDecoration(
-                  color: Colors.blue[300],
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(12),
-                    bottomRight: Radius.circular(12),
-                  ),
-                ),
-                child: Align(
-                  alignment: Alignment.center,
-                  child: Text(
-                    "Okay let's go!",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600),
-                  ),
-                ),
-              ),
+          Padding(
+            padding: const EdgeInsets.all(18.0),
+            child: AddItemForm(
+              validForm: cbFunc,
             ),
           ),
           Align(

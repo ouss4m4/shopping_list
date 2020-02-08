@@ -7,11 +7,11 @@ class ItemsList extends StatelessWidget {
   final List<ShopItem> shopItems;
   final Function delegateRemovingItem;
   final Function delegateEditingItem;
-  final Function delegateCompleteItem;
+  /* final Function delegateCompleteItem; */
   ItemsList(
       {@required this.shopItems,
       @required this.delegateRemovingItem,
-      @required this.delegateCompleteItem,
+      /*  @required this.delegateCompleteItem, */
       @required this.delegateEditingItem});
 
   @override
@@ -36,12 +36,12 @@ class ItemsList extends StatelessWidget {
                 icon: Icons.edit,
                 onTap: () => delegateEditingItem(shopItems[index]),
               ),
-              IconSlideAction(
+              /*  IconSlideAction(
                 caption: 'Complete',
                 color: Colors.green,
                 icon: Icons.check_circle,
                 onTap: () => delegateCompleteItem(shopItems[index]),
-              ),
+              ), */
             ],
           );
         },

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shopping_list/models/ShopItem.dart';
 import 'package:shopping_list/providers/personalProvider.dart';
-import 'package:shopping_list/screens/addItem.dart';
 import 'package:shopping_list/widgets/addItemModal.dart';
 
 import 'package:shopping_list/widgets/itemsList.dart';
@@ -17,8 +16,8 @@ class _PersonelScreenState extends State<PersonelScreen> {
   Widget build(BuildContext context) {
     final shopItemsProvider = Provider.of<PersonelProvider>(context);
     void addItemToList(ShopItem item) {
-      Navigator.pop(context);
       shopItemsProvider.addItem(item);
+      Navigator.pop(context);
     }
 
     return Column(
@@ -29,7 +28,7 @@ class _PersonelScreenState extends State<PersonelScreen> {
             child: ItemsList(
               shopItems: shopItemsProvider.shopItems,
               delegateRemovingItem: shopItemsProvider.removeItem,
-              delegateCompleteItem: shopItemsProvider.setItemComplete,
+              /*   delegateCompleteItem: shopItemsProvider.setItemComplete, */
               delegateEditingItem: shopItemsProvider.editItem,
             ),
           ),
@@ -38,7 +37,7 @@ class _PersonelScreenState extends State<PersonelScreen> {
             child: Align(
               alignment: Alignment.bottomRight,
               child: FloatingActionButton(
-                onPressed: () => showAddItemModal(context),
+                onPressed: () => showAddItemModal(context, addItemToList),
                 tooltip: 'Add an item',
                 child: Icon(Icons.add),
               ),
