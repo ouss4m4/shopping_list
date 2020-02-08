@@ -15,9 +15,19 @@ class _PersonelScreenState extends State<PersonelScreen> {
   @override
   Widget build(BuildContext context) {
     final shopItemsProvider = Provider.of<PersonelProvider>(context);
+
     void addItemToList(ShopItem item) {
       shopItemsProvider.addItem(item);
       Navigator.pop(context);
+    }
+
+    void showEditItem(ShopItem item) {
+      newValue(ShopItem newDetails) {
+        shopItemsProvider.editItem(item, newDetails);
+        Navigator.pop(context);
+      }
+
+      showAddItemModal(context, newValue, preset: item);
     }
 
     return Column(
@@ -29,7 +39,7 @@ class _PersonelScreenState extends State<PersonelScreen> {
               shopItems: shopItemsProvider.shopItems,
               delegateRemovingItem: shopItemsProvider.removeItem,
               /*   delegateCompleteItem: shopItemsProvider.setItemComplete, */
-              delegateEditingItem: shopItemsProvider.editItem,
+              delegateEditingItem: showEditItem,
             ),
           ),
           Padding(

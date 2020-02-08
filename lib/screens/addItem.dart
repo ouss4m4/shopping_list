@@ -3,7 +3,8 @@ import 'package:shopping_list/models/ShopItem.dart';
 
 class AddItemForm extends StatefulWidget {
   final Function validForm;
-  AddItemForm({@required this.validForm});
+  final ShopItem preset;
+  AddItemForm({@required this.validForm, this.preset});
   @override
   AddItemFormState createState() {
     return AddItemFormState();
@@ -15,6 +16,18 @@ class AddItemFormState extends State<AddItemForm> {
   final TextEditingController nameController = new TextEditingController();
   final TextEditingController subtitleController = new TextEditingController();
   final TextEditingController quantityController = new TextEditingController();
+
+  @override
+  void initState() {
+    var itemToEdit = widget.preset;
+    print(itemToEdit);
+    if (itemToEdit != null) {
+      this.nameController.text = itemToEdit.title;
+      this.subtitleController.text = itemToEdit.subtitle;
+      this.quantityController.text = itemToEdit.quantity;
+    }
+    super.initState();
+  }
 
   void emitFormValues() {
     final ShopItem testItem = new ShopItem(

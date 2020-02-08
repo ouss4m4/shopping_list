@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:shopping_list/models/ShopItem.dart';
 import 'package:shopping_list/screens/addItem.dart';
 
-void showAddItemModal(BuildContext context, Function cbFunc) {
+void showAddItemModal(BuildContext context, Function cbFunc,
+    {ShopItem preset}) {
   Dialog addItemModal = Dialog(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(12.0),
@@ -40,6 +42,7 @@ void showAddItemModal(BuildContext context, Function cbFunc) {
             padding: const EdgeInsets.all(18.0),
             child: AddItemForm(
               validForm: cbFunc,
+              preset: preset,
             ),
           ),
           Align(

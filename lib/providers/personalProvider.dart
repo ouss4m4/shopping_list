@@ -45,10 +45,11 @@ class PersonelProvider with ChangeNotifier {
     }
   }
 
-  void editItem(ShopItem itemToEdit) {
+  void editItem(ShopItem itemToEdit, ShopItem newValue) {
+    print('item editing in provider');
     int index = shopItems.indexOf(itemToEdit);
     if (index > -1) {
-      shopItems[index] = itemToEdit;
+      shopItems[index] = newValue;
       notifyListeners();
     }
   }
