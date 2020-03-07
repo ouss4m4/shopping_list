@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_list/models/ShopItem.dart';
+import 'package:shopping_list/screens/cameraContainer.dart';
 
 class AddItemForm extends StatefulWidget {
   final Function validForm;
@@ -16,6 +17,13 @@ class AddItemFormState extends State<AddItemForm> {
   final TextEditingController nameController = new TextEditingController();
   final TextEditingController subtitleController = new TextEditingController();
   final TextEditingController quantityController = new TextEditingController();
+  void takePictureClicked(BuildContext ctx) {
+    // push camera container ??
+    Navigator.pushNamed(
+      ctx,
+      '/camera',
+    );
+  }
 
   @override
   void initState() {
@@ -75,7 +83,7 @@ class AddItemFormState extends State<AddItemForm> {
                       child: Text(
                         'Add a Picture',
                       ),
-                      onPressed: () => null,
+                      onPressed: () => this.takePictureClicked(context),
                     ),
                   ),
                   Container(

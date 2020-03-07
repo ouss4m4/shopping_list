@@ -1,9 +1,27 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:shopping_list/screens/homepage.dart';
+import 'package:provider/provider.dart';
+import 'package:shopping_list/providers/cameraProvider.dart';
+import 'package:shopping_list/screens/cameraContainer.dart';
 
-void main() => runApp(MyApp());
+import 'package:shopping_list/screens/homepage.dart';
+import 'package:shopping_list/utils/camera-screen.dart';
+
+Future<void> main() async {
+  // Ensure that plugin services are initialized so that `availableCameras()`
+  // can be called before `runApp()`
+  WidgetsFlutterBinding.ensureInitialized();
+  // Obtain a list of the available cameras on the device.
+  final cameras = await availableCameras();
+  // Get a specific camera from the list of available cameras.
+  final camerasArray = cameras;
+  runApp(MyApp(camerasArray: camerasArray));
+}
 
 class MyApp extends StatelessWidget {
+  final List<CameraDescription> camerasArray;
+
+  MyApp({this.camerasArray});
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -11,7 +29,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.cyan,
       ),
-      home: MyHomePage(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => MyHomePage(),
+        '/camera': (context) => CameraContainer(camerasArray),
+      },
     );
   }
 }

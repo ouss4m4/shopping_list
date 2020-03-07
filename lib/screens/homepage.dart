@@ -6,7 +6,6 @@ import 'package:shopping_list/screens/shared.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key}) : super(key: key);
-
   final String title = 'Shopping List';
 
   @override
