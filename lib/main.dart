@@ -1,11 +1,8 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:shopping_list/providers/cameraProvider.dart';
-import 'package:shopping_list/screens/cameraContainer.dart';
 
+import 'package:shopping_list/screens/cameraContainer.dart';
 import 'package:shopping_list/screens/homepage.dart';
-import 'package:shopping_list/utils/camera-screen.dart';
 
 Future<void> main() async {
   // Ensure that plugin services are initialized so that `availableCameras()`
