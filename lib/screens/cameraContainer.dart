@@ -11,13 +11,29 @@ class CameraContainer extends StatefulWidget {
 }
 
 class _CameraContainerState extends State<CameraContainer> {
+  bool isInPreview = false;
+  String previewPath = '';
+  void passPicturePath(String path) {
+    //Navigator.pop(context);
+    print(path);
+    setState(() {
+      previewPath = path;
+      isInPreview = true;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: CameraScreen(
-        cameraArray: widget.cameraArray,
-      ),
-    );
+    return isInPreview && previewPath.isNotEmpty
+        ? DisplayPictureScreen(
+            imagePath: previewPath,
+          )
+        : Container(
+            child: CameraScreen(
+              cameraArray: widget.cameraArray,
+              onPictureTaken: passPicturePath,
+            ),
+          );
   }
 }
 

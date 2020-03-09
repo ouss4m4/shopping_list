@@ -3,11 +3,11 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart' show join;
 import 'package:path_provider/path_provider.dart';
-import 'package:shopping_list/screens/cameraContainer.dart';
 
 class CameraScreen extends StatefulWidget {
   final List<CameraDescription> cameraArray;
-  CameraScreen({@required this.cameraArray});
+  final Function onPictureTaken;
+  CameraScreen({@required this.cameraArray, @required this.onPictureTaken});
   @override
   CameraScreenState createState() => CameraScreenState();
 }
@@ -97,14 +97,8 @@ class CameraScreenState extends State<CameraScreen> {
                   // Attempt to take a picture and log where it's been saved.
                   await _controller.takePicture(path);
 
-                  // If the picture was taken, display it on a new screen.
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) =>
-                          DisplayPictureScreen(imagePath: path),
-                    ),
-                  );
+                  // If the picture was taken, pass path to previous screen
+                  widget.onPictureTaken(path);
                 } catch (e) {
                   // If an error occurs, log the error to the console.
                   print(e);
