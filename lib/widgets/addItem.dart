@@ -28,7 +28,6 @@ class AddItemFormState extends State<AddItemForm> {
   @override
   void initState() {
     var itemToEdit = widget.preset;
-    print(itemToEdit);
     if (itemToEdit != null) {
       this.nameController.text = itemToEdit.title;
       this.subtitleController.text = itemToEdit.subtitle;

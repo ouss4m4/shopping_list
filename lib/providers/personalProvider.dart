@@ -37,7 +37,6 @@ class PersonelProvider with ChangeNotifier {
   }
 
   void removeItem(ShopItem itemToRemove) {
-    print('removing using provider');
     bool result = shopItems.remove(itemToRemove);
 
     if (result) {
@@ -46,7 +45,6 @@ class PersonelProvider with ChangeNotifier {
   }
 
   void editItem(ShopItem itemToEdit, ShopItem newValue) {
-    print('item editing in provider');
     int index = shopItems.indexOf(itemToEdit);
     if (index > -1) {
       shopItems[index] = newValue;
@@ -58,12 +56,4 @@ class PersonelProvider with ChangeNotifier {
     shopItems.add(itemToAdd);
     notifyListeners();
   }
-
-/*   void setItemComplete(ShopItem itemToComplete) {
-    int index = shopItems.indexOf(itemToComplete);
-    if (index > -1) {
-      shopItems[index] = itemToComplete;
-      notifyListeners();
-    }
-  } */
 }
