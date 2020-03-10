@@ -1,7 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:shopping_list/utils/camera-screen.dart';
-import 'dart:io';
+import 'package:shopping_list/utils/picture-preview.dart';
 
 class CameraContainer extends StatefulWidget {
   final List<CameraDescription> cameraArray;
@@ -13,9 +13,18 @@ class CameraContainer extends StatefulWidget {
 class _CameraContainerState extends State<CameraContainer> {
   bool isInPreview = false;
   String previewPath = '';
+  void retakePicture() {
+    setState(() {
+      previewPath = '';
+      isInPreview = false;
+    });
+  }
+
+  void usePicture() {
+    Navigator.pop(context, previewPath);
+  }
+
   void passPicturePath(String path) {
-    //Navigator.pop(context);
-    print(path);
     setState(() {
       previewPath = path;
       isInPreview = true;
@@ -25,31 +34,43 @@ class _CameraContainerState extends State<CameraContainer> {
   @override
   Widget build(BuildContext context) {
     return isInPreview && previewPath.isNotEmpty
-        ? DisplayPictureScreen(
-            imagePath: previewPath,
-          )
-        : Container(
-            child: CameraScreen(
-              cameraArray: widget.cameraArray,
-              onPictureTaken: passPicturePath,
+        ? Scaffold(
+            resizeToAvoidBottomPadding: true,
+            appBar: AppBar(
+              title: Text('Preview'),
+              centerTitle: true,
             ),
+            body: Container(
+              child: Column(
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      RaisedButton(
+                        onPressed: usePicture,
+                        child: Text('Use Photo'),
+                      ),
+                      RaisedButton(
+                        onPressed: retakePicture,
+                        child: Text('Take new'),
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    height: 500,
+                    width: 500,
+                    child: DisplayPictureScreen(
+                      imagePath: previewPath,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          )
+        : CameraScreen(
+            cameraArray: widget.cameraArray,
+            onPictureTaken: passPicturePath,
           );
   }
 }
 
 // A widget that displays the picture taken by the user.
-class DisplayPictureScreen extends StatelessWidget {
-  final String imagePath;
-
-  const DisplayPictureScreen({Key key, this.imagePath}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('Display the Picture')),
-      // The image is stored as a file on the device. Use the `Image.file`
-      // constructor with the given path to display the image.
-      body: Image.file(File(imagePath)),
-    );
-  }
-}

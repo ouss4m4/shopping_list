@@ -17,12 +17,15 @@ class AddItemFormState extends State<AddItemForm> {
   final TextEditingController nameController = new TextEditingController();
   final TextEditingController subtitleController = new TextEditingController();
   final TextEditingController quantityController = new TextEditingController();
-  void takePictureClicked(BuildContext ctx) {
+  String imagePath = '';
+  void takePictureClicked(BuildContext ctx) async {
     // push camera container ??
-    Navigator.pushNamed(
+    final pathFromCameraRoute = await Navigator.pushNamed(
       ctx,
       '/camera',
     );
+    print('we got the dam $pathFromCameraRoute');
+    imagePath = pathFromCameraRoute;
   }
 
   @override
@@ -32,6 +35,7 @@ class AddItemFormState extends State<AddItemForm> {
       this.nameController.text = itemToEdit.title;
       this.subtitleController.text = itemToEdit.subtitle;
       this.quantityController.text = itemToEdit.quantity;
+      imagePath = itemToEdit.imageUrl;
     }
     super.initState();
   }
@@ -41,7 +45,7 @@ class AddItemFormState extends State<AddItemForm> {
         title: nameController.text,
         subtitle: subtitleController.text,
         quantity: quantityController.text,
-        imageUrl: 'http://placekitten.com/90/90');
+        imageUrl: imagePath);
     widget.validForm(testItem);
   }
 

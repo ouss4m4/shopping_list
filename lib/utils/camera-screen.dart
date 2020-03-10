@@ -25,7 +25,7 @@ class CameraScreenState extends State<CameraScreen> {
       // Get a specific camera from the list of available cameras.
       widget.cameraArray[currentCamera],
       // Define the resolution to use.
-      ResolutionPreset.high,
+      ResolutionPreset.medium,
     );
 
     // Next, initialize the controller. This returns a Future.
