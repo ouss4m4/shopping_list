@@ -2,9 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:shopping_list/models/ShopItem.dart';
 
 class PersonelProvider with ChangeNotifier {
+  final ShopItem exampleItem = new ShopItem(
+      imageUrl: '',
+      quantity: '8',
+      subtitle: 'Playstation controller size',
+      title: 'Batteries');
   List<ShopItem> _itemsList = [];
 
-  List<ShopItem> get shopItems => _itemsList;
+  List<ShopItem> get shopItems {
+    if (_itemsList.length < 1) {
+      _itemsList.add(exampleItem);
+    }
+
+    return _itemsList;
+  }
 
   set shopItems(List<ShopItem> items) {
     _itemsList = items;

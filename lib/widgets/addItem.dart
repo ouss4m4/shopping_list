@@ -18,15 +18,15 @@ class AddItemFormState extends State<AddItemForm> {
   final TextEditingController subtitleController = new TextEditingController();
   final TextEditingController quantityController = new TextEditingController();
   String imagePath = '';
-  void takePictureClicked(BuildContext ctx) async {
+  /* void takePictureClicked(BuildContext ctx) async {
     // push camera container ??
     final pathFromCameraRoute = await Navigator.pushNamed(
       ctx,
       '/camera',
     );
-    print('we got the dam $pathFromCameraRoute');
+   
     imagePath = pathFromCameraRoute;
-  }
+  } */
 
   @override
   void initState() {
@@ -86,7 +86,7 @@ class AddItemFormState extends State<AddItemForm> {
                       child: Text(
                         'Add a Picture',
                       ),
-                      onPressed: () => this.takePictureClicked(context),
+                      onPressed: () => null,
                     ),
                   ),
                   Container(
