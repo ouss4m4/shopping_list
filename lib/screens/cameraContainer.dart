@@ -25,6 +25,7 @@ class _CameraContainerState extends State<CameraContainer> {
   }
 
   void passPicturePath(String path) {
+    print('got someth $path');
     setState(() {
       previewPath = path;
       isInPreview = true;
@@ -35,7 +36,6 @@ class _CameraContainerState extends State<CameraContainer> {
   Widget build(BuildContext context) {
     return isInPreview && previewPath.isNotEmpty
         ? Scaffold(
-            resizeToAvoidBottomPadding: true,
             appBar: AppBar(
               title: Text('Preview'),
               centerTitle: true,
@@ -45,11 +45,11 @@ class _CameraContainerState extends State<CameraContainer> {
                 children: <Widget>[
                   Row(
                     children: <Widget>[
-                      RaisedButton(
+                      ElevatedButton(
                         onPressed: usePicture,
                         child: Text('Use Photo'),
                       ),
-                      RaisedButton(
+                      ElevatedButton(
                         onPressed: retakePicture,
                         child: Text('Take new'),
                       )

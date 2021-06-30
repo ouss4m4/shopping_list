@@ -82,7 +82,7 @@ class AddItemFormState extends State<AddItemForm> {
                 children: [
                   Container(
                     width: 120,
-                    child: RaisedButton(
+                    child: ElevatedButton(
                       child: Text(
                         'Add a Picture',
                       ),
@@ -91,7 +91,7 @@ class AddItemFormState extends State<AddItemForm> {
                   ),
                   Container(
                     width: 130,
-                    child: RaisedButton(
+                    child: ElevatedButton(
                       onPressed: () {
                         if (_formKey.currentState.validate()) {
                           emitFormValues();

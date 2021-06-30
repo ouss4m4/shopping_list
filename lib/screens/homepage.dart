@@ -24,7 +24,6 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext defaultContext) {
     return Scaffold(
-      resizeToAvoidBottomPadding: true,
       appBar: AppBar(
         title: Text(widget.title),
         centerTitle: true,
